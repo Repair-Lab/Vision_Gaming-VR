@@ -1,0 +1,203 @@
+# VR Gaming Server - Advanced Video Configuration
+# Professionelle Video-Streaming und Capture-Konfiguration für Enterprise-VR
+
+# VR-spezifische Einstellungen
+vr:
+  mode: "stereo"  # mono, stereo, 360, 180
+  eye_resolution: "4K"  # HD(1920x1080), 4K(3840x2160), 8K(7680x4320)
+  fov_horizontal: 100  # Grad
+  fov_vertical: 90  # Grad
+  ipd: 63.5  # mm (Interpupillary Distance)
+  depth_buffer: true
+  anti_aliasing: "MSAA4x"
+  post_processing: true
+
+# Capture-Einstellungen (erweitert)
+capture:
+  method: "auto"  # auto, mss, win32, avfoundation, x11, directx, metal
+  monitor: 0
+  window_title: null
+  process_name: null
+  fps: 90  # Erhöht für VR
+  width: 7680  # 8K für beide Augen
+  height: 4320
+  color_format: "RGBA"  # RGBA, BGRA, RGB, YUV444, YUV420
+  capture_cursor: false
+  capture_audio: true
+  audio_channels: 2
+  audio_sample_rate: 48000
+  hdr_support: true
+  color_space: "BT.2020"
+  gamma_correction: 2.2
+
+# Video-Encoding (Enterprise-Grade)
+encoding:
+  codec: "auto"  # auto, h264, h265, av1, vp8, vp9, mjpeg, prores
+  preset: "medium"  # ultrafast, fast, medium, slow, veryslow
+  profile: "high"  # baseline, main, high, high10, high422, high444
+  level: "5.2"
+  bitrate: 100000000  # 100 Mbps für 8K
+  max_bitrate: 200000000  # 200 Mbps
+  min_bitrate: 50000000  # 50 Mbps
+  adaptive_bitrate: true
+  dynamic_bitrate: true
+  keyframe_interval: 1  # Sekunde für VR
+  quality: 95  # 0-100
+  two_pass_encoding: true
+  rate_control: "VBR"  # CBR, VBR, CRF
+  crf_value: 18
+
+# Performance-Optimierungen
+performance:
+  gpu_acceleration: true
+  hardware_encoding: true
+  multi_threading: true
+  thread_count: 8
+  memory_pool: true
+  zero_copy: true
+  async_encoding: true
+  frame_buffering: 3
+  latency_optimization: true
+  power_management: "performance"
+  low_latency_mode: true
+  buffer_size: 10
+
+# Streaming-Protokolle (erweitert)
+streaming:
+  primary: "webrtc"
+  fallback: ["mjpeg", "hls", "rtmp"]
+  hls_enabled: true
+  rtmp_enabled: true
+  dash_enabled: true
+  low_latency_mode: true
+
+# WebRTC-Konfiguration (Enterprise)
+webrtc:
+  enabled: true
+  video_codec: "H264"
+  audio_codec: "opus"
+  max_framerate: 120
+  resolution_scaling: true
+  simulcast: true
+  simulcast_layers: 3
+  svc: true
+  svc_layers: 3
+  ice_servers:
+    - "stun:stun.l.google.com:19302"
+    - "stun:stun1.l.google.com:19302"
+  dtls_srtp: true
+  sctp: true
+  data_channels: true
+
+# MJPEG-Streaming (erweitert)
+mjpeg:
+  enabled: true
+  quality: 95
+  progressive: true
+  restart_interval: 16
+  huffman_optimization: true
+
+# HLS-Streaming
+hls:
+  enabled: true
+  segment_duration: 2
+  playlist_length: 10
+  version: 6
+  iframe_playlist: true
+  master_playlist: true
+  audio_rendition: true
+
+# RTMP-Streaming
+rtmp:
+  enabled: true
+  application: "live"
+  stream_key: null
+  reconnect_attempts: 5
+  reconnect_delay: 5
+
+# DASH-Streaming
+dash:
+  enabled: true
+  segment_duration: 2
+  manifest_update_period: 10
+  minimum_buffer_time: 5
+  suggested_presentation_delay: 2
+
+# Quality-Einstellungen (erweitert)
+quality:
+  adaptive_quality: true
+  quality_levels:
+    - name: "low"
+      width: 1280
+      height: 720
+      fps: 30
+      bitrate: 2000000
+    - name: "medium"
+      width: 1920
+      height: 1080
+      fps: 45
+      bitrate: 4000000
+    - name: "high"
+      width: 1920
+      height: 1080
+      fps: 60
+      bitrate: 8000000
+    - name: "ultra"
+      width: 3840
+      height: 2160
+      fps: 90
+      bitrate: 50000000
+    - name: "extreme"
+      width: 7680
+      height: 4320
+      fps: 120
+      bitrate: 100000000
+
+# Monitoring und Diagnose
+monitoring:
+  enabled: true
+  frame_drops: true
+  bitrate_monitoring: true
+  latency_monitoring: true
+  quality_metrics: true
+  network_stats: true
+  gpu_stats: true
+  memory_stats: true
+
+# Fehlerbehandlung
+error_handling:
+  auto_recovery: true
+  fallback_resolution: "1920x1080"
+  fallback_fps: 30
+  max_recovery_attempts: 5
+  recovery_delay: 2
+  log_errors: true
+  alert_system: true
+
+# Netzwerk-Optimierungen
+network:
+  mtu: 1500
+  buffer_size: 65536
+  congestion_control: "bbr"
+  ecn: true
+  pacing: true
+  packet_priority: true
+  jitter_buffer: 50
+  fec: true
+  fec_percentage: 10
+  compression_level: 6
+  max_clients: 5
+  buffer_frames: 5
+
+# Video-Processing
+processing:
+  enabled: true
+  resize_method: "lanczos"  # nearest, linear, cubic, lanczos
+  color_correction: false
+  gamma_correction: 1.0
+  brightness: 0
+  contrast: 1.0
+  saturation: 1.0
+  sharpness: 1.0
+  denoise: false
+  stabilize: false

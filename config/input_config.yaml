@@ -1,0 +1,218 @@
+# VR Gaming Server - Advanced Input Configuration
+# Enterprise-Grade Input-Injection und Head-Tracking Konfiguration
+
+# Maus-Einstellungen mit Enterprise-Features
+mouse:
+  sensitivity: 1.0
+  acceleration_curve: 1.0
+  min_delta: 0.5
+  max_speed: 500.0
+  smoothing: 0.1
+  # Enterprise-Features
+  adaptive_sensitivity: true
+  motion_prediction: true
+  subpixel_precision: true
+  anti_jitter_filter: true
+  deadzone_compensation: true
+
+# Tastatur-Einstellungen mit erweiterten Optionen
+keyboard:
+  key_repeat_delay: 0.05
+  key_repeat_rate: 20
+  deadzone_keys: []
+  # Enterprise-Features
+  macro_support: true
+  key_combination_timeout: 0.5
+  international_layout_support: true
+  accessibility_features: true
+  custom_key_mappings: true
+
+# Advanced Head-Tracking Konfiguration
+head_tracking:
+  enabled: true
+  sensitivity_x: 1.0
+  sensitivity_y: 1.0
+  deadzone_degrees: 0.8
+  smoothing_factor: 0.15
+  max_speed_deg_per_sec: 180.0
+  invert_x: false
+  invert_y: false
+  calibration_required: true
+  auto_calibration: false
+  # Enterprise-Features
+  prediction_algorithm: "kalman_filter"
+  drift_compensation: true
+  magnetic_interference_filter: true
+  temperature_compensation: true
+  multi_sensor_fusion: true
+  6dof_tracking: true
+  imu_calibration_matrix: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+  optical_tracking_fallback: true
+  tracking_quality_threshold: 0.95
+
+# Advanced Gesture-Erkennung mit ML-Unterstützung
+gestures:
+  enabled: true
+  left_grab_threshold: 0.8
+  right_pinch_threshold: 0.7
+  fist_threshold: 0.9
+  open_hand_threshold: 0.3
+  gesture_cooldown: 0.2
+  # Enterprise-Features
+  machine_learning_model: "gesture_recognizer_v2"
+  confidence_threshold: 0.85
+  multi_hand_tracking: true
+  gesture_sequences: true
+  custom_gesture_training: true
+  haptic_feedback: true
+  gesture_smoothing: 0.1
+
+# VR-Controller Unterstützung
+vr_controllers:
+  oculus_touch:
+    enabled: true
+    haptic_feedback: true
+    thumbstick_deadzone: 0.1
+    trigger_sensitivity: 0.9
+  valve_index:
+    enabled: true
+    force_feedback: true
+    finger_tracking: true
+  htc_vive:
+    enabled: true
+    lighthouse_tracking: true
+  windows_mixed_reality:
+    enabled: true
+    spatial_anchors: true
+  custom_controllers:
+    enabled: true
+    device_profiles: []
+
+# Multi-Device Input-Management
+device_management:
+  primary_device: "auto"
+  device_priorities: ["oculus", "valve_index", "htc_vive", "keyboard_mouse"]
+  device_switching: "seamless"
+  device_calibration_sync: true
+  multi_device_coordination: true
+
+# Input-Mapping für verschiedene Spiele mit erweiterten Optionen
+game_mappings:
+  default:
+    mouse_move: "head_tracking"
+    left_click: "left_pinch"
+    right_click: "right_pinch"
+    jump: "left_fist"
+    crouch: "right_fist"
+    inventory: "left_open"
+    # Erweiterte Mappings
+    sprint: "right_fist_double"
+    reload: "left_grab_hold"
+    melee: "fist_punch"
+    grenade: "right_open_double"
+
+  minecraft:
+    mouse_move: "head_tracking"
+    left_click: "left_pinch"
+    right_click: "right_pinch"
+    jump: "space"
+    crouch: "left_shift"
+    inventory: "e"
+    # Minecraft-spezifische Features
+    creative_fly: "both_hands_up"
+    hotbar_select: "finger_point"
+    block_place: "right_pinch_hold"
+
+  cyberpunk2077:
+    mouse_move: "head_tracking"
+    left_click: "left_pinch"
+    right_click: "right_pinch"
+    jump: "space"
+    crouch: "c"
+    inventory: "tab"
+    # Cyberpunk-spezifische Features
+    quickhack: "left_pinch_double"
+    combat_mode: "fist_ready"
+    vehicle_control: "thumbstick_grip"
+
+  flight_simulator:
+    mouse_move: "head_tracking"
+    left_click: "left_pinch"
+    right_click: "right_pinch"
+    throttle_up: "right_hand_up"
+    throttle_down: "right_hand_down"
+    rudder_left: "left_hand_left"
+    rudder_right: "left_hand_right"
+    flaps: "both_hands_forward"
+
+  forza_motorsport:
+    mouse_move: "head_tracking"
+    accelerate: "right_trigger"
+    brake: "left_trigger"
+    steer_left: "left_thumbstick"
+    steer_right: "right_thumbstick"
+    handbrake: "left_grab"
+    gear_up: "right_pinch"
+    gear_down: "left_pinch"
+
+# Cross-platform Input-Methoden mit Enterprise-Support
+input_methods:
+  primary: "auto"  # auto, win32, pynput, directinput, xinput
+  fallback: "pynput"
+  enterprise_features:
+    directinput_support: true
+    xinput_support: true
+    raw_input_support: true
+    hid_device_support: true
+  windows:
+    win32_available: true
+    pynput_available: true
+    directinput_available: true
+    rawinput_available: true
+  macos:
+    pynput_available: true
+    iokit_available: true
+    carbon_available: true
+  linux:
+    pynput_available: true
+    xinput_available: true
+    evdev_available: true
+    uinput_available: true
+
+# Enterprise Performance-Einstellungen
+performance:
+  input_thread_priority: "realtime"
+  polling_rate: 2000  # Hz für extreme Performance
+  buffer_size: 50
+  async_processing: true
+  multi_threading: true
+  gpu_acceleration: true
+  low_latency_mode: true
+  power_management: "performance"
+
+# Erweiterte Debug- und Monitoring-Features
+debug:
+  log_input_events: false
+  visualize_tracking: false
+  show_fps: true
+  record_input: false
+  # Enterprise-Debugging
+  performance_monitoring: true
+  latency_analysis: true
+  input_device_diagnostics: true
+  calibration_logs: true
+  error_reporting: true
+
+# Sicherheit und Compliance
+security:
+  input_sanitization: true
+  anti_cheat_protection: true
+  audit_logging: true
+  compliance_mode: "enterprise"
+
+# Integration mit anderen Systemen
+integrations:
+  steam_vr: true
+  oculus_runtime: true
+  windows_mixed_reality: true
+  custom_apis: []

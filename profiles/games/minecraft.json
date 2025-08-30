@@ -1,0 +1,101 @@
+{
+  "name": "Minecraft",
+  "description": "Optimiertes Profil für Minecraft",
+  "version": "1.0",
+  "created": "2025-01-30T12:00:00Z",
+  "modified": "2025-01-30T12:00:00Z",
+  "process_patterns": ["javaw.exe", "minecraft.exe", "MinecraftLauncher.exe"],
+  "head_tracking": {
+    "enabled": true,
+    "sensitivity_x": 0.8,
+    "sensitivity_y": 0.8,
+    "deadzone_degrees": 1.0,
+    "smoothing_factor": 0.2,
+    "max_speed_deg_per_sec": 120.0,
+    "invert_x": false,
+    "invert_y": false,
+    "calibration_required": true,
+    "auto_calibration": true
+  },
+  "input": {
+    "mouse_sensitivity": 0.8,
+    "acceleration_curve": 1.0,
+    "min_mouse_delta": 0.4,
+    "key_repeat_delay": 0.1,
+    "key_repeat_rate": 15
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "quality": 90,
+    "bitrate": 4000000,
+    "adaptive_quality": true
+  },
+  "gestures": {
+    "enabled": true,
+    "left_grab": "LMB",
+    "right_pinch": "RMB",
+    "right_fist": "Q",
+    "left_open": "E",
+    "left_grab_threshold": 0.7,
+    "right_pinch_threshold": 0.8,
+    "fist_threshold": 0.85,
+    "open_hand_threshold": 0.4,
+    "gesture_cooldown": 0.15
+  },
+  "controls": {
+    "mouse_move": "head_tracking",
+    "left_click": "left_pinch",
+    "right_click": "right_pinch",
+    "jump": "space",
+    "crouch": "left_shift",
+    "inventory": "e",
+    "sprint": "left_ctrl",
+    "drop": "q",
+    "use": "right_pinch",
+    "interact": "f",
+    "hotbar_1": "1",
+    "hotbar_2": "2",
+    "hotbar_3": "3",
+    "hotbar_4": "4",
+    "hotbar_5": "5",
+    "hotbar_6": "6",
+    "hotbar_7": "7",
+    "hotbar_8": "8",
+    "hotbar_9": "9",
+    "chat": "t",
+    "command": "/"
+  },
+  "game_specific": {
+    "fov": 90,
+    "mouse_sensitivity": 50,
+    "raw_input": true,
+    "vsync": false,
+    "max_fps": 260,
+    "render_distance": 12,
+    "graphics": "fancy",
+    "particles": "all",
+    "mipmap_levels": 4
+  },
+  "performance": {
+    "input_thread_priority": "normal",
+    "polling_rate": 500,
+    "buffer_size": 5,
+    "async_processing": true
+  },
+  "compatibility": {
+    "supported_games": ["Minecraft", "Minecraft Java Edition", "Minecraft Bedrock"],
+    "min_resolution": "1280x720",
+    "max_resolution": "3840x2160",
+    "recommended_fps": 60,
+    "min_ram": 4
+  },
+  "metadata": {
+    "author": "VR Gaming Server",
+    "license": "MIT",
+    "tags": ["minecraft", "sandbox", "building", "survival"],
+    "rating": 4.9,
+    "downloads": 3200
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Game Setup - VR Gaming</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Spiel-Setup</h1>
+        <p>Wählen Sie ein Spiel aus und konfigurieren Sie die Einstellungen</p>
+        
+        <div class="card">
+            <h3>Laufende Spiele</h3>
+            <div id="runningGames">Lade...</div>
+        </div>
+        
+        <div class="card">
+            <h3>Spiel-Profile</h3>
+            <div id="gameProfiles">Lade...</div>
+        </div>
+        
+        <div class="card">
+            <h3>Neues Profil erstellen</h3>
+            <form id="newProfileForm">
+                <div class="form-group">
+                    <label for="profileName">Profil-Name:</label>
+                    <input type="text" id="profileName" required>
+                </div>
+                <div class="form-group">
+                    <label for="gameName">Spiel-Name:</label>
+                    <input type="text" id="gameName" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Profil erstellen</button>
+            </form>
+        </div>
+        
+        <button onclick="window.location.href='/'" class="btn">← Zurück</button>
+    </div>
+
+    <script>
+        async function loadRunningGames() {
+            try {
+                const response = await fetch('/api/games');
+                const games = await response.json();
+                const container = document.getElementById('runningGames');
+                
+                if (games.length === 0) {
+                    container.innerHTML = '<p>Keine Spiele gefunden</p>';
+                    return;
+                }
+                
+                container.innerHTML = '<ul>' + games.map(game => 
+                    `<li>${game.name} (PID: ${game.pid}) <button onclick="selectGame('${game.name}')">Auswählen</button></li>`
+                ).join('') + '</ul>';
+            } catch (error) {
+                document.getElementById('runningGames').innerHTML = '<p>Fehler beim Laden der Spiele</p>';
+            }
+        }
+        
+        async function loadGameProfiles() {
+            try {
+                const response = await fetch('/api/profiles');
+                const profiles = await response.json();
+                const container = document.getElementById('gameProfiles');
+                
+                container.innerHTML = '<ul>' + Object.keys(profiles).map(profile => 
+                    `<li>${profile} <button onclick="loadProfile('${profile}')">Laden</button></li>`
+                ).join('') + '</ul>';
+            } catch (error) {
+                document.getElementById('gameProfiles').innerHTML = '<p>Fehler beim Laden der Profile</p>';
+            }
+        }
+        
+        function selectGame(gameName) {
+            alert(`Spiel ausgewählt: ${gameName}`);
+            // Hier würde die Spiel-Auswahl implementiert werden
+        }
+        
+        function loadProfile(profileName) {
+            alert(`Profil geladen: ${profileName}`);
+            // Hier würde das Profil geladen werden
+        }
+        
+        document.getElementById('newProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const profileName = document.getElementById('profileName').value;
+            const gameName = document.getElementById('gameName').value;
+            
+            try {
+                const response = await fetch(`/api/profile/${profileName}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ game_name: gameName })
+                });
+                
+                if (response.ok) {
+                    alert('Profil erstellt!');
+                    loadGameProfiles();
+                } else {
+                    alert('Fehler beim Erstellen des Profils');
+                }
+            } catch (error) {
+                alert('Fehler beim Erstellen des Profils');
+            }
+        });
+        
+        window.onload = () => {
+            loadRunningGames();
+            loadGameProfiles();
+        };
+    </script>
+</body>
+</html>

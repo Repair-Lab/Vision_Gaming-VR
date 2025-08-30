@@ -1,0 +1,280 @@
+# VR Gaming Server - Enterprise GUI Configuration
+# Web-basierte Konfigurationsoberfläche für professionelle VR-Streaming-Server
+
+# GUI Server Konfiguration
+gui:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8081
+  ssl_enabled: true
+  ssl_cert: "/etc/ssl/certs/gui.crt"
+  ssl_key: "/etc/ssl/private/gui.key"
+  debug: false
+  theme: "enterprise"
+  language: "de"
+  timezone: "Europe/Berlin"
+
+# Authentication & Authorization
+auth:
+  enabled: true
+  method: "oauth2"
+  providers:
+    - name: "google"
+      client_id: ""
+      client_secret: ""
+    - name: "github"
+      client_id: ""
+      client_secret: ""
+    - name: "microsoft"
+      client_id: ""
+      client_secret: ""
+  jwt_secret: "enterprise-gui-secret-key"
+  session_timeout: 3600
+  refresh_token_expiry: 604800
+  password_policy:
+    min_length: 12
+    require_uppercase: true
+    require_lowercase: true
+    require_numbers: true
+    require_symbols: true
+
+# User Management
+users:
+  admin_user: "admin"
+  admin_password_hash: ""  # Wird zur Laufzeit gesetzt
+  multi_user_support: true
+  user_roles:
+    - name: "admin"
+      permissions: ["*"]
+    - name: "operator"
+      permissions: ["read", "write", "restart"]
+    - name: "viewer"
+      permissions: ["read"]
+  ldap_integration: false
+  ldap_server: ""
+  ldap_base_dn: ""
+  ldap_user_dn: ""
+  ldap_group_dn: ""
+
+# Dashboard Konfiguration
+dashboard:
+  enabled: true
+  refresh_interval: 5
+  widgets:
+    - type: "system_status"
+      position: "top-left"
+      size: "medium"
+    - type: "performance_metrics"
+      position: "top-right"
+      size: "large"
+    - type: "network_stats"
+      position: "middle-left"
+      size: "medium"
+    - type: "active_streams"
+      position: "middle-right"
+      size: "medium"
+    - type: "recent_logs"
+      position: "bottom"
+      size: "large"
+  custom_widgets: []
+
+# Konfigurations-Editor
+config_editor:
+  enabled: true
+  syntax_highlighting: true
+  auto_save: true
+  backup_on_save: true
+  validation_enabled: true
+  schema_validation: true
+  diff_view: true
+  history_tracking: true
+  max_history_entries: 100
+
+# Video Konfiguration Interface
+video_config:
+  resolution_presets:
+    - name: "4K VR (Single Eye)"
+      width: 3840
+      height: 2160
+      fps: 90
+    - name: "4K VR (Dual Eye)"
+      width: 7680
+      height: 2160
+      fps: 90
+    - name: "8K VR (Single Eye)"
+      width: 7680
+      height: 4320
+      fps: 60
+    - name: "8K VR (Dual Eye)"
+      width: 15360
+      height: 4320
+      fps: 60
+  codec_options:
+    - name: "H.264"
+      profiles: ["baseline", "main", "high", "high10"]
+    - name: "H.265/HEVC"
+      profiles: ["main", "main10", "mainstillpicture"]
+    - name: "AV1"
+      profiles: ["main", "high", "professional"]
+  bitrate_calculator: true
+  quality_presets:
+    - name: "Ultra Low Latency"
+      latency_target: 20
+      quality: 80
+    - name: "Balanced"
+      latency_target: 50
+      quality: 90
+    - name: "Maximum Quality"
+      latency_target: 100
+      quality: 95
+
+# Network Konfiguration Interface
+network_config:
+  protocol_selector: true
+  bandwidth_tester: true
+  latency_monitor: true
+  qos_configurator: true
+  firewall_manager: true
+  port_forwarding: true
+  vpn_integration: false
+  cloud_integration:
+    aws: true
+    azure: true
+    gcp: true
+
+# Input Konfiguration Interface
+input_config:
+  device_manager: true
+  calibration_wizard: true
+  gesture_trainer: true
+  profile_manager: true
+  vr_controller_setup: true
+  keyboard_layout_selector: true
+  mouse_acceleration_tuner: true
+
+# Monitoring & Analytics
+monitoring:
+  real_time_charts: true
+  historical_data: true
+  alerting_system: true
+  report_generator: true
+  export_formats: ["pdf", "csv", "json"]
+  custom_dashboards: true
+  anomaly_detection: true
+
+# API Management
+api:
+  rest_api_enabled: true
+  graphql_enabled: true
+  websocket_enabled: true
+  documentation_auto_generate: true
+  rate_limiting_config: true
+  api_key_management: true
+  webhook_support: true
+
+# Backup & Restore
+backup:
+  scheduled_backups: true
+  manual_backup: true
+  restore_wizard: true
+  backup_verification: true
+  cloud_backup: true
+  encryption_options: true
+
+# Security Management
+security:
+  certificate_manager: true
+  firewall_config: true
+  user_access_control: true
+  audit_logs: true
+  compliance_reports: true
+  vulnerability_scanner: false
+
+# System Management
+system:
+  service_manager: true
+  log_viewer: true
+  performance_tuner: true
+  update_manager: true
+  diagnostic_tools: true
+  remote_access: false
+
+# Integration Management
+integrations:
+  steam_vr: true
+  oculus_integration: true
+  windows_mixed_reality: true
+  custom_integrations: []
+
+# Advanced Features
+advanced:
+  scripting_support: true
+  plugin_system: true
+  custom_themes: true
+  localization: true
+  accessibility: true
+  mobile_support: false
+
+# Performance Settings
+performance:
+  lazy_loading: true
+  caching_enabled: true
+  compression_enabled: true
+  cdn_integration: false
+  database_optimization: true
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/gui.log"
+  max_file_size: "50MB"
+  max_files: 5
+  remote_logging: false
+
+# Database
+database:
+  type: "sqlite"
+  path: "data/gui.db"
+  backup_enabled: true
+  migration_enabled: true
+
+# Cache
+cache:
+  enabled: true
+  type: "memory"
+  ttl: 3600
+  max_size: "100MB"
+
+# Email Notifications
+email:
+  enabled: false
+  smtp_server: ""
+  smtp_port: 587
+  smtp_username: ""
+  smtp_password: ""
+  from_address: ""
+  tls_enabled: true
+
+# Webhook Notifications
+webhooks:
+  enabled: false
+  endpoints: []
+  retry_policy: "exponential_backoff"
+  timeout: 30
+
+# Mobile App Integration
+mobile:
+  enabled: false
+  api_enabled: true
+  push_notifications: false
+  qr_code_login: false
+
+# Enterprise Features
+enterprise:
+  multi_tenant: false
+  white_labeling: false
+  custom_branding: false
+  sso_integration: false
+  audit_compliance: true
+  data_retention: 2555  # Tage
+  backup_encryption: true

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>VR Gaming Server</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f0f2f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .btn { padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 5px; }
+        .btn.primary { background: #007bff; color: white; }
+        .btn.primary:hover { background: #0056b3; }
+        .btn.success { background: #28a745; color: white; }
+        .btn.success:hover { background: #1e7e34; }
+        .status { margin: 20px 0; padding: 15px; border-radius: 5px; }
+        .status.running { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .status.stopped { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥽 VR Gaming Server Control Panel</h1>
+        <p>Ultra-low latency VR game streaming with head tracking</p>
+        
+        <div id="status" class="status stopped">
+            <h3>Server Status: <span id="serverStatus">Gestoppt</span></h3>
+            <p>URL: <span id="serverUrl">Nicht verfügbar</span></p>
+        </div>
+        
+        <div>
+            <button class="btn btn-primary" onclick="startServer()">🚀 Server Starten</button>
+            <button class="btn btn-success" onclick="openVRGaming()">🎮 VR Gaming Starten</button>
+            <button class="btn" onclick="openSensorCheck()">🔍 Sensor-Check</button>
+            <button class="btn" onclick="openSettings()">⚙️ Einstellungen</button>
+        </div>
+        
+        <div id="performance" style="margin-top: 30px;">
+            <h3>Performance</h3>
+            <div id="perfStats">Lade...</div>
+        </div>
+    </div>
+
+    <script>
+        async function updateStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                document.getElementById('serverStatus').textContent = data.is_running ? 'Läuft' : 'Gestoppt';
+                document.getElementById('serverUrl').textContent = data.url || 'Nicht verfügbar';
+                document.getElementById('status').className = data.is_running ? 'status running' : 'status stopped';
+            } catch (e) {
+                console.error('Status-Update fehlgeschlagen:', e);
+            }
+        }
+        
+        function startServer() {
+            fetch('/api/start-streaming', { method: 'POST' })
+                .then(() => updateStatus())
+                .catch(e => console.error('Server-Start fehlgeschlagen:', e));
+        }
+        
+        function openVRGaming() {
+            window.open('/vr-gaming', '_blank');
+        }
+        
+        function openSensorCheck() {
+            window.open('/sensor-check', '_blank');
+        }
+        
+        function openSettings() {
+            window.open('/settings', '_blank');
+        }
+        
+        // Status alle 5 Sekunden aktualisieren
+        setInterval(updateStatus, 5000);
+        updateStatus();
+    </script>
+</body>
+</html>

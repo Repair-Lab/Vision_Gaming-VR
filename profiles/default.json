@@ -1,0 +1,78 @@
+{
+  "name": "Default",
+  "description": "Standard-Profil für alle Spiele",
+  "version": "1.0",
+  "created": "2025-01-30T12:00:00Z",
+  "modified": "2025-01-30T12:00:00Z",
+  "process_patterns": ["*"],
+  "head_tracking": {
+    "enabled": true,
+    "sensitivity_x": 1.0,
+    "sensitivity_y": 1.0,
+    "deadzone_degrees": 0.8,
+    "smoothing_factor": 0.15,
+    "max_speed_deg_per_sec": 180.0,
+    "invert_x": false,
+    "invert_y": false,
+    "calibration_required": true,
+    "auto_calibration": false
+  },
+  "input": {
+    "mouse_sensitivity": 1.0,
+    "acceleration_curve": 1.0,
+    "min_mouse_delta": 0.5,
+    "key_repeat_delay": 0.05,
+    "key_repeat_rate": 20
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "quality": 85,
+    "bitrate": 5000000,
+    "adaptive_quality": true
+  },
+  "gestures": {
+    "enabled": true,
+    "left_grab": "F",
+    "right_pinch": "LMB",
+    "right_fist": "R",
+    "left_open": "TAB",
+    "left_grab_threshold": 0.8,
+    "right_pinch_threshold": 0.7,
+    "fist_threshold": 0.9,
+    "open_hand_threshold": 0.3,
+    "gesture_cooldown": 0.2
+  },
+  "controls": {
+    "mouse_move": "head_tracking",
+    "left_click": "left_pinch",
+    "right_click": "right_pinch",
+    "jump": "left_fist",
+    "crouch": "right_fist",
+    "inventory": "left_open",
+    "sprint": "right_open",
+    "reload": "R",
+    "use": "E",
+    "interact": "F"
+  },
+  "performance": {
+    "input_thread_priority": "high",
+    "polling_rate": 1000,
+    "buffer_size": 10,
+    "async_processing": true
+  },
+  "compatibility": {
+    "supported_games": ["*"],
+    "min_resolution": "1280x720",
+    "max_resolution": "3840x2160",
+    "recommended_fps": 60
+  },
+  "metadata": {
+    "author": "VR Gaming Server",
+    "license": "MIT",
+    "tags": ["default", "universal", "head_tracking"],
+    "rating": 5.0,
+    "downloads": 0
+  }
+}

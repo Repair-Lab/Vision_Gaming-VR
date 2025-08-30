@@ -1,0 +1,91 @@
+{
+  "name": "Forza Horizon",
+  "description": "Racing-optimiertes Profil für Forza Horizon",
+  "version": "1.0",
+  "created": "2025-01-30T12:00:00Z",
+  "modified": "2025-01-30T12:00:00Z",
+  "process_patterns": ["ForzaHorizon5.exe", "ForzaHorizon4.exe", "ForzaMotorsport7.exe"],
+  "head_tracking": {
+    "enabled": true,
+    "sensitivity_x": 0.6,
+    "sensitivity_y": 0.4,
+    "deadzone_degrees": 1.5,
+    "smoothing_factor": 0.3,
+    "max_speed_deg_per_sec": 90.0,
+    "invert_x": false,
+    "invert_y": false,
+    "calibration_required": true,
+    "auto_calibration": false
+  },
+  "input": {
+    "mouse_sensitivity": 0.6,
+    "acceleration_curve": 0.8,
+    "min_mouse_delta": 0.8,
+    "key_repeat_delay": 0.08,
+    "key_repeat_rate": 12
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "quality": 85,
+    "bitrate": 5000000,
+    "adaptive_quality": true
+  },
+  "gestures": {
+    "enabled": false,
+    "left_grab_threshold": 0.8,
+    "right_pinch_threshold": 0.7,
+    "fist_threshold": 0.9,
+    "open_hand_threshold": 0.3,
+    "gesture_cooldown": 0.2
+  },
+  "controls": {
+    "mouse_move": "head_tracking",
+    "accelerate": "w",
+    "brake": "s",
+    "steer_left": "a",
+    "steer_right": "d",
+    "handbrake": "space",
+    "gear_up": "left_shift",
+    "gear_down": "left_ctrl",
+    "clutch": "c",
+    "nitro": "left_alt",
+    "reset_car": "r",
+    "change_view": "v",
+    "pause": "escape",
+    "photo_mode": "p"
+  },
+  "game_specific": {
+    "fov": 75,
+    "motion_blur": false,
+    "vsync": false,
+    "triple_buffering": true,
+    "anti_aliasing": "FXAA",
+    "shadow_quality": "medium",
+    "reflection_quality": "medium",
+    "particle_quality": "high",
+    "crowd_density": "medium"
+  },
+  "performance": {
+    "input_thread_priority": "high",
+    "polling_rate": 1000,
+    "buffer_size": 8,
+    "async_processing": true
+  },
+  "compatibility": {
+    "supported_games": ["Forza Horizon 5", "Forza Horizon 4", "Forza Motorsport 7"],
+    "min_resolution": "1920x1080",
+    "max_resolution": "3840x2160",
+    "recommended_fps": 60,
+    "min_gpu": "GTX 1060",
+    "min_ram": 8
+  },
+  "metadata": {
+    "author": "VR Gaming Server",
+    "license": "MIT",
+    "tags": ["forza", "racing", "driving", "simulator"],
+    "rating": 4.7,
+    "downloads": 890
+  }
+}

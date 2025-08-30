@@ -1,0 +1,96 @@
+{
+  "name": "Flight Simulator",
+  "description": "Flight Sim optimiert für Microsoft Flight Simulator",
+  "version": "1.0",
+  "created": "2025-01-30T12:00:00Z",
+  "modified": "2025-01-30T12:00:00Z",
+  "process_patterns": ["FlightSimulator.exe", "MSFS.exe"],
+  "head_tracking": {
+    "enabled": true,
+    "sensitivity_x": 0.5,
+    "sensitivity_y": 0.5,
+    "deadzone_degrees": 0.5,
+    "smoothing_factor": 0.1,
+    "max_speed_deg_per_sec": 60.0,
+    "invert_x": false,
+    "invert_y": false,
+    "calibration_required": true,
+    "auto_calibration": false
+  },
+  "input": {
+    "mouse_sensitivity": 0.5,
+    "acceleration_curve": 0.9,
+    "min_mouse_delta": 0.2,
+    "key_repeat_delay": 0.05,
+    "key_repeat_rate": 20
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "quality": 80,
+    "bitrate": 3000000,
+    "adaptive_quality": true
+  },
+  "gestures": {
+    "enabled": false,
+    "left_grab_threshold": 0.8,
+    "right_pinch_threshold": 0.7,
+    "fist_threshold": 0.9,
+    "open_hand_threshold": 0.3,
+    "gesture_cooldown": 0.2
+  },
+  "controls": {
+    "mouse_move": "head_tracking",
+    "throttle_up": "page_up",
+    "throttle_down": "page_down",
+    "rudder_left": "z",
+    "rudder_right": "x",
+    "ailerons_left": "left_arrow",
+    "ailerons_right": "right_arrow",
+    "elevator_up": "up_arrow",
+    "elevator_down": "down_arrow",
+    "flaps_up": "f7",
+    "flaps_down": "f8",
+    "gear_toggle": "g",
+    "brake": "period",
+    "mixture": "m",
+    "prop_pitch": "p",
+    "autopilot": "z",
+    "pause": "pause",
+    "screenshot": "print_screen"
+  },
+  "game_specific": {
+    "fov": 60,
+    "vsync": true,
+    "anti_aliasing": "MSAA 4x",
+    "shadows": "medium",
+    "water_quality": "medium",
+    "terrain_quality": "medium",
+    "building_density": "medium",
+    "cloud_quality": "medium",
+    "weather_effects": true,
+    "traffic_density": "low"
+  },
+  "performance": {
+    "input_thread_priority": "normal",
+    "polling_rate": 500,
+    "buffer_size": 5,
+    "async_processing": true
+  },
+  "compatibility": {
+    "supported_games": ["Microsoft Flight Simulator 2020", "Microsoft Flight Simulator"],
+    "min_resolution": "1920x1080",
+    "max_resolution": "3840x2160",
+    "recommended_fps": 30,
+    "min_gpu": "RTX 2060",
+    "min_ram": 16
+  },
+  "metadata": {
+    "author": "VR Gaming Server",
+    "license": "MIT",
+    "tags": ["flight_simulator", "aviation", "simulation", "microsoft"],
+    "rating": 4.6,
+    "downloads": 650
+  }
+}

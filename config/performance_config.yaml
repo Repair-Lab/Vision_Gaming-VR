@@ -1,0 +1,237 @@
+# VR Gaming Server - Enterprise Performance Configuration
+# Extreme Performance-Optimierungen für professionelle VR-Streaming-Server
+
+# CPU Optimizations
+cpu:
+  affinity_enabled: true
+  core_pinning: true
+  hyperthreading: true
+  turbo_boost: true
+  c_states: "disabled"
+  governor: "performance"
+  min_freq: "auto"
+  max_freq: "auto"
+  energy_performance_preference: "performance"
+  scaling_driver: "intel_pstate"
+
+# GPU Optimizations
+gpu:
+  enabled: true
+  device: "auto"
+  driver: "nvidia"  # nvidia, amd, intel
+  memory_overclock: false
+  core_overclock: false
+  power_limit: "maximum"
+  fan_mode: "auto"
+  compute_mode: "exclusive_process"
+  persistence_mode: true
+  allow_gpu_reset: true
+  gpu_direct: true
+  gpu_direct_rdma: true
+
+# Memory Optimizations
+memory:
+  hugepages_enabled: true
+  hugepages_size: "2MB"
+  hugepages_count: 1024
+  transparent_hugepages: "always"
+  memory_locking: true
+  numa_balancing: false
+  swappiness: 1
+  dirty_ratio: 10
+  dirty_background_ratio: 5
+  vm_overcommit: 1
+
+# Network Optimizations
+network:
+  tcp_congestion_control: "bbr"
+  tcp_fastopen: 3
+  tcp_low_latency: true
+  tcp_autocorking: false
+  tcp_dsack: true
+  tcp_fack: true
+  tcp_window_scaling: true
+  tcp_timestamps: true
+  tcp_sack: true
+  udp_buffer_size: 4194304
+  netdev_max_backlog: 5000
+  somaxconn: 1024
+  rmem_max: 4194304
+  wmem_max: 4194304
+
+# Storage Optimizations
+storage:
+  io_scheduler: "none"  # NVMe
+  read_ahead_kb: 0
+  nr_requests: 64
+  scheduler_queue_depth: 64
+  fstrim_enabled: true
+  noatime: true
+  discard: true
+  barrier: false
+  journaling: "ordered"
+
+# Kernel Optimizations
+kernel:
+  sysctl_tunings:
+    kernel.sched_min_granularity_ns: 1000000
+    kernel.sched_wakeup_granularity_ns: 1500000
+    kernel.sched_migration_cost_ns: 500000
+    kernel.sched_latency_ns: 4000000
+    kernel.timer_migration: 0
+    kernel.sched_autogroup_enabled: 0
+    kernel.numa_balancing: 0
+    kernel.perf_event_paranoid: 0
+    vm.dirty_ratio: 10
+    vm.dirty_background_ratio: 5
+    vm.swappiness: 1
+    vm.vfs_cache_pressure: 50
+    vm.overcommit_memory: 1
+    vm.overcommit_ratio: 100
+    net.core.somaxconn: 1024
+    net.core.netdev_max_backlog: 5000
+    net.ipv4.tcp_max_syn_backlog: 1024
+    net.ipv4.ip_local_port_range: "1024 65535"
+    net.ipv4.tcp_tw_reuse: 1
+    net.ipv4.tcp_fin_timeout: 15
+    net.ipv4.tcp_keepalive_time: 300
+    net.ipv4.tcp_keepalive_intvl: 30
+    net.ipv4.tcp_keepalive_probes: 5
+
+# Real-time Optimizations
+realtime:
+  enabled: true
+  priority: 80
+  scheduling_policy: "SCHED_FIFO"
+  cpu_isolation: true
+  isolated_cores: "2-7"
+  rcu_nocbs: "2-7"
+  rcu_nocb_poll: true
+  threadirqs: true
+  nohz_full: "2-7"
+
+# Power Management
+power:
+  governor: "performance"
+  energy_performance_preference: "performance"
+  min_perf_pct: 100
+  max_perf_pct: 100
+  turbo_enabled: true
+  c1e_enabled: false
+  c6_enabled: false
+
+# Monitoring & Profiling
+monitoring:
+  enabled: true
+  perf_enabled: true
+  flame_graphs: true
+  system_tap: true
+  bpf_trace: true
+  intel_vtune: false
+  nvidia_nsight: false
+  sampling_interval: 1000  # us
+
+# Benchmarking
+benchmarking:
+  enabled: true
+  cpu_benchmark: true
+  memory_benchmark: true
+  disk_benchmark: true
+  network_benchmark: true
+  gpu_benchmark: true
+  vr_performance_test: true
+  latency_test: true
+  throughput_test: true
+  stress_test: true
+
+# Thermal Management
+thermal:
+  monitoring_enabled: true
+  throttling_prevention: true
+  fan_control: "auto"
+  temperature_thresholds:
+    warning: 70
+    critical: 85
+    emergency: 95
+  cooling_profile: "performance"
+
+# Resource Limits
+limits:
+  max_open_files: 1048576
+  max_processes: 65536
+  max_locked_memory: "unlimited"
+  max_address_space: "unlimited"
+  max_file_size: "unlimited"
+  max_core_size: "unlimited"
+  max_resident_set: "unlimited"
+  max_cpu_time: "unlimited"
+
+# Security Hardening (Performance-optimized)
+security:
+  selinux: "permissive"
+  apparmor: "complain"
+  aslr: "enabled"
+  dep: "enabled"
+  smep: "enabled"
+  smap: "enabled"
+  kaslr: "enabled"
+
+# Container Optimizations (falls in Docker)
+container:
+  enabled: false
+  privileged: true
+  cap_add: ["SYS_ADMIN", "NET_ADMIN", "SYS_PTRACE"]
+  security_opt: ["apparmor:unconfined"]
+  tmpfs: ["/tmp", "/var/tmp"]
+  shm_size: "2GB"
+  ulimits:
+    nofile: 1048576
+    nproc: 65536
+
+# Cloud Optimizations
+cloud:
+  provider: "auto"
+  instance_optimization: true
+  network_optimization: true
+  storage_optimization: true
+  cost_optimization: false
+
+# Custom Optimizations
+custom:
+  enabled: false
+  scripts: []
+  kernel_modules: []
+  systemd_services: []
+
+# Performance Profiles
+profiles:
+  gaming:
+    description: "Optimized for gaming performance"
+    cpu_governor: "performance"
+    i915_enable_psr: 0
+    i915_enable_fbc: 0
+    i915_enable_guc: 3
+  streaming:
+    description: "Optimized for streaming performance"
+    tcp_congestion_control: "bbr"
+    net.core.rmem_max: 4194304
+    net.core.wmem_max: 4194304
+  vr:
+    description: "Optimized for VR performance"
+    kernel.sched_latency_ns: 2000000
+    vm.swappiness: 1
+    realtime_priority: 90
+
+# Active Profile
+active_profile: "vr"
+
+# Performance Metrics Export
+metrics:
+  enabled: true
+  format: "prometheus"
+  endpoint: "/metrics"
+  interval: 5
+  labels:
+    service: "vr-gaming-server"
+    version: "enterprise"
+    profile: "vr"

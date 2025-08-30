@@ -1,0 +1,89 @@
+{
+  "name": "Custom Profile 1",
+  "description": "Benutzerdefiniertes Profil für personalisierte Einstellungen",
+  "version": "1.0",
+  "created": "2025-01-30T12:00:00Z",
+  "modified": "2025-01-30T12:00:00Z",
+  "process_patterns": ["*"],
+  "head_tracking": {
+    "enabled": true,
+    "sensitivity_x": 1.2,
+    "sensitivity_y": 0.9,
+    "deadzone_degrees": 1.0,
+    "smoothing_factor": 0.2,
+    "max_speed_deg_per_sec": 150.0,
+    "invert_x": false,
+    "invert_y": true,
+    "calibration_required": true,
+    "auto_calibration": true
+  },
+  "input": {
+    "mouse_sensitivity": 1.3,
+    "acceleration_curve": 1.5,
+    "min_mouse_delta": 0.3,
+    "key_repeat_delay": 0.03,
+    "key_repeat_rate": 25
+  },
+  "video": {
+    "width": 2560,
+    "height": 1440,
+    "fps": 90,
+    "quality": 90,
+    "bitrate": 8000000,
+    "adaptive_quality": true
+  },
+  "gestures": {
+    "enabled": true,
+    "left_grab": "Q",
+    "right_pinch": "LMB",
+    "right_fist": "SPACE",
+    "left_open": "TAB",
+    "left_grab_threshold": 0.7,
+    "right_pinch_threshold": 0.8,
+    "fist_threshold": 0.85,
+    "open_hand_threshold": 0.4,
+    "gesture_cooldown": 0.15
+  },
+  "controls": {
+    "mouse_move": "head_tracking",
+    "left_click": "left_pinch",
+    "right_click": "right_pinch",
+    "jump": "right_fist",
+    "crouch": "left_fist",
+    "inventory": "left_open",
+    "sprint": "right_open",
+    "reload": "R",
+    "use": "E",
+    "interact": "F",
+    "weapon_1": "1",
+    "weapon_2": "2",
+    "weapon_3": "3",
+    "grenade": "G"
+  },
+  "performance": {
+    "input_thread_priority": "realtime",
+    "polling_rate": 2000,
+    "buffer_size": 15,
+    "async_processing": true
+  },
+  "compatibility": {
+    "supported_games": ["*"],
+    "min_resolution": "1920x1080",
+    "max_resolution": "3840x2160",
+    "recommended_fps": 90
+  },
+  "user_preferences": {
+    "theme": "dark",
+    "language": "de",
+    "notifications": true,
+    "auto_start": false,
+    "save_logs": true
+  },
+  "metadata": {
+    "author": "User",
+    "license": "Personal",
+    "tags": ["custom", "personalized", "high_performance"],
+    "rating": 0.0,
+    "downloads": 0
+  }
+}

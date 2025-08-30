@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Server Control - VR Gaming</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ Server-Steuerung</h1>
+        <p>Verwalten Sie den VR Gaming Server</p>
+        
+        <div class="card">
+            <h3>Server-Status</h3>
+            <div id="serverStatus">Lade...</div>
+            <button onclick="startServer()" class="btn btn-primary">🚀 Server starten</button>
+            <button onclick="stopServer()" class="btn btn-danger">⏹️ Server stoppen</button>
+            <button onclick="restartServer()" class="btn">🔄 Neustarten</button>
+        </div>
+        
+        <div class="card">
+            <h3>Performance-Monitoring</h3>
+            <div id="performanceStats">Lade...</div>
+        </div>
+        
+        <div class="card">
+            <h3>Logs</h3>
+            <div id="logs" style="max-height: 300px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 4px;">Lade...</div>
+            <button onclick="clearLogs()" class="btn">🧹 Logs löschen</button>
+        </div>
+        
+        <button onclick="window.location.href='/'" class="btn">← Zurück</button>
+    </div>
+
+    <script>
+        async function updateServerStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const status = await response.json();
+                const statusDiv = document.getElementById('serverStatus');
+                
+                statusDiv.innerHTML = `
+                    <p><strong>Status:</strong> ${status.is_running ? 'Läuft' : 'Gestoppt'}</p>
+                    <p><strong>URL:</strong> ${status.url || 'Nicht verfügbar'}</p>
+                    <p><strong>Verbundene Clients:</strong> ${status.connected_clients || 0}</p>
+                `;
+            } catch (error) {
+                document.getElementById('serverStatus').innerHTML = '<p>Fehler beim Laden des Status</p>';
+            }
+        }
+        
+        async function updatePerformanceStats() {
+            try {
+                const response = await fetch('/api/performance');
+                const stats = await response.json();
+                const statsDiv = document.getElementById('performanceStats');
+                
+                statsDiv.innerHTML = `
+                    <p><strong>CPU:</strong> ${stats.cpu_percent?.toFixed(1)}%</p>
+                    <p><strong>RAM:</strong> ${stats.memory_percent?.toFixed(1)}%</p>
+                    <p><strong>Netzwerk:</strong> ${stats.network_connections || 0} Verbindungen</p>
+                    <p><strong>Uptime:</strong> ${Math.floor(stats.uptime / 60)} Minuten</p>
+                `;
+            } catch (error) {
+                document.getElementById('performanceStats').innerHTML = '<p>Fehler beim Laden der Statistiken</p>';
+            }
+        }
+        
+        async function loadLogs() {
+            try {
+                // Placeholder für Log-Loading
+                document.getElementById('logs').innerHTML = '<p>Server-Logs würden hier angezeigt werden...</p>';
+            } catch (error) {
+                document.getElementById('logs').innerHTML = '<p>Fehler beim Laden der Logs</p>';
+            }
+        }
+        
+        function startServer() {
+            fetch('/api/start-streaming', { method: 'POST' })
+                .then(() => updateServerStatus())
+                .catch(() => alert('Fehler beim Starten des Servers'));
+        }
+        
+        function stopServer() {
+            fetch('/api/stop-streaming', { method: 'POST' })
+                .then(() => updateServerStatus())
+                .catch(() => alert('Fehler beim Stoppen des Servers'));
+        }
+        
+        function restartServer() {
+            stopServer();
+            setTimeout(startServer, 2000);
+        }
+        
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '<p>Logs gelöscht</p>';
+        }
+        
+        window.onload = () => {
+            updateServerStatus();
+            updatePerformanceStats();
+            loadLogs();
+            
+            // Regelmäßige Updates
+            setInterval(updateServerStatus, 5000);
+            setInterval(updatePerformanceStats, 10000);
+        };
+    </script>
+</body>
+</html>
